@@ -432,7 +432,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.4.7;
-				PRODUCT_BUNDLE_IDENTIFIER = com.wonderassembly.compositor;
+				PRODUCT_BUNDLE_IDENTIFIER = com.johnlangreal.compositor.multilanguage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
@@ -471,7 +471,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.4.7;
-				PRODUCT_BUNDLE_IDENTIFIER = com.wonderassembly.compositor;
+				PRODUCT_BUNDLE_IDENTIFIER = com.johnlangreal.compositor.multilanguage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;

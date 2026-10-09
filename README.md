@@ -1,4 +1,13 @@
-# Compositor
+# Compositor Multilanguage
+
+A community localization fork of [Compositor](https://github.com/robbietilton/Compositor). It includes English and Simplified Chinese, with a String Catalog ready for additional languages. This fork is maintained separately from the original project.
+
+Download this fork from [Releases](https://github.com/Johnlangreal/compositor-multilanguage/releases). Select **Compositor → Settings… → Language**, then reopen the app to apply the language. Fork builds use a separate app identifier and do not install updates from the original project.
+
+The downloadable Apple Silicon build is ad-hoc signed and **not notarized by Apple**. macOS may block it on first launch. You can also build from source with Xcode.
+
+## Original project
+
 
 Adobe Photoshop costs too much and tools like GIMP don’t feel familiar enough for me to stay in flow. That’s why I built Compositor.
 
@@ -75,7 +84,7 @@ brew install --cask robbietilton-compositor
 - Keep working while a project saves
 - Photoshop-style keyboard shortcuts throughout, remappable in Edit > Keyboard Shortcuts
 - Drag a number's label to scrub its value, as in Photoshop
-- Automatic updates, signed and notarized
+- Manual downloads for fork updates; the community build is ad-hoc signed and not notarized
 
 ### Works with AI agents
 - AI agents and scripts can build and edit projects directly: a `.comp` is a folder of PNG layers and a manifest, and an open project updates live as it's written. See [Writing Compositor projects](docs/writing-comp-files.md)
@@ -91,13 +100,9 @@ Open `Compositor.xcodeproj` and run the **Compositor** scheme.
 
 ## Releasing
 
-`scripts/release.sh` builds a Release version, signs it with Developer ID, notarizes and staples it, and packages it into `dist/Compositor-<version>.dmg`.
+Run `bash scripts/release-multilanguage.sh 1.4.7-multilanguage.1` to build an Apple Silicon Release app, package a ZIP, and generate its SHA-256 checksum in `dist/`. The script uses ad-hoc signing and does not notarize the application.
 
-It needs, all kept outside this repository:
-
-- a **Developer ID Application** certificate in the login keychain
-- notarization credentials saved with `xcrun notarytool store-credentials "compositor-notary" …`
-- [`create-dmg`](https://github.com/create-dmg/create-dmg) (`brew install create-dmg`)
+The original `scripts/release.sh` remains available for developers with their own Developer ID and notarization credentials. Its original signing team and profile must be replaced before use.
 
 ## License
 

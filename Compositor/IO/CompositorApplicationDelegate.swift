@@ -10,6 +10,11 @@ final class CompositorApplicationDelegate: NSObject, NSApplicationDelegate {
     /// shown during launch, kept the editor window from ever opening.
     let updater = SPUStandardUpdaterController(startingUpdater: false, updaterDelegate: nil, userDriverDelegate: nil)
 
+    var hasUpdateFeed: Bool {
+        guard let feed = Bundle.main.object(forInfoDictionaryKey: "SUFeedURL") as? String else { return false }
+        return !feed.isEmpty
+    }
+
     // Finder Open With and Dock drops, including files delivered during launch.
     func application(_ application: NSApplication, open urls: [URL]) {
         // Reopening a window that's already showing makes SwiftUI rebuild it, so the app blinks out and back:
@@ -74,7 +79,9 @@ final class CompositorApplicationDelegate: NSObject, NSApplicationDelegate {
             guard let menu = note.object as? NSMenu, let index = note.userInfo?["NSMenuItemIndex"] as? Int else { return }
             MainActor.assumeIsolated { Self.removeIfSystemExtra(at: index, in: menu) }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [updater] in updater.startUpdater() }
+        if hasUpdateFeed {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [updater] in updater.startUpdater() }
+        }
     }
 
     /// Black over everything but the window's inside in Canvas Only: the screen around it, its rounded corners and the
